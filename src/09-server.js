@@ -19,7 +19,7 @@ server.on('stream', (stream, headers) => {
       'Cache-Control': 'no-cache',
       ':status'      : 200
     });
-    stream.write('retry: 10000\n\n');
+    stream.write('retry: 5000\n\n');
     setInterval(() => {
       stream.write('id: ' + id++ + '\n' +
                    'data: ' + 'new server event ' + (new Date()).toLocaleTimeString() + '\n\n');
