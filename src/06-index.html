@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SSE PoC</title>
+  <link rel="stylesheet" href="https://cdn.graphery.online/stylent/stylent.min.css">
+</head>
+<body>
+<main>
+  <h1>SSE</h1>
+  <input type="button" id="stopButton" value="Stop Listening"/>
+  <hr/>
+  <div id="content"></div>
+  <script>
+    const source = new EventSource('/time');
+
+    source.addEventListener('open', (e) => {
+      document.getElementById('content').innerHTML += 'Connections to the server established..<br/>';
+    });
+
+    source.addEventListener('message', (e) => {
+      document.getElementById('content').innerHTML += e.data + '<br/>';
+      console.log(e);
+    });
+
+    source.addEventListener('close', () => {
+      document.getElementById('content').innerHTML += 'Listening to server events stopped..<br/>';
+    })
+
+    document.getElementById('stopButton').onclick = function () {
+      source.close();
+    }
+  </script>
+</main>
+</body>
+</html>

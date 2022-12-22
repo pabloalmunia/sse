@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat PoC</title>
+  <link rel="stylesheet" href="https://cdn.graphery.online/stylent/stylent.min.css">
+  <link rel="stylesheet" href="app.css">
+  <script src="app.js" type="module" defer></script>
+</head>
+<body>
+<main>
+  <h1>ToDo (shared)</h1>
+  <div class="row">
+    <div class="col-11">
+      <input id="new-task" type="text" placeholder="new task">
+    </div>
+    <div class="col-1">
+      <button id="send" class="size-full-width">add</button>
+    </div>
+  </div>
+  <div id="messages" class="row">&nbsp;</div>
+  <div id="tasks">
+    <template id="task">
+      <div class="row task">
+        <div class="col-1 text-center"><input type="checkbox" class="done"></div>
+        <div class="col-10"><input type="text" class="name"></div>
+        <div class="col-1"><button class="delete outline">delete</button></div>
+      </div>
+    </template>
+  </div>
+</main>
+<script>
+</script>
+</body>
+</html>

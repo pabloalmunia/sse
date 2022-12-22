@@ -1,0 +1,34 @@
+:root {
+  --st-border-radius : 0;
+}
+
+.task {
+  padding-bottom : 0.5em;
+}
+
+.task:hover {
+  background-color : #f0f0f0;
+}
+
+.task:has(.done:checked) .name {
+  text-decoration : line-through;
+}
+
+.task .done {
+  margin-top : 1.8em;
+}
+
+.task .name {
+  border           : 0 !important;
+  background-color : transparent !important;
+}
+
+.task .delete {
+  display      : none;
+  margin-right : 1em;
+}
+
+.task:hover .delete {
+  display : inline;
+}
+

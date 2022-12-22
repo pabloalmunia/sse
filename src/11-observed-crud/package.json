@@ -1,0 +1,10 @@
+{
+  "name": "11-observed-crud",
+  "version": "1.0.0",
+  "dependencies": {
+    "fastify": "^4.10.2",
+    "@fastify/static": "^6.6.0",
+    "sqlite3": "^5.1.4"
+  },
+  "type": "module"
+}

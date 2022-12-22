@@ -1,0 +1,10 @@
+{
+  "name": "sse-demo",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Pablo Almunia",
+  "license": "MIT",
+  "dependencies": {
+  },
+  "type": "module"
+}

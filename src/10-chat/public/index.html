@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat PoC</title>
+  <link rel="stylesheet" href="https://cdn.graphery.online/stylent/stylent.min.css">
+  <style>
+    #content {
+      padding: 0.5em;
+    }
+    #content p {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Mini Chat</h1>
+  <div id="content" style="height: 70vh; border: 1px solid grey; overflow-y: scroll;"></div>
+  <div class="row">
+    <div class="col-11"><input id="message" type="text" placeholder="your message"></div>
+    <div class="col-1">
+      <button id="send" class="size-full-width">send</button>
+    </div>
+  </div>
+</main>
+<script>
+  // Dom elements
+  const message = document.querySelector('#message');
+  const send    = document.querySelector('#send');
+  const content = document.querySelector('#content');
+
+  // Event source
+  const source  = new EventSource('/chat');
+  source.addEventListener('message', function (e) {
+    addMsg(e.lastEventId + '> ' + e.data);
+  });
+  source.addEventListener('open', function (e) {
+    addMsg('Connections to the server established...');
+  }, false);
+  source.addEventListener('close', function (e) {
+    addMsg('Connections to the server closed.');
+  });
+  source.addEventListener('error', function (e) {
+    addMsg(`error connected with the server`);
+  });
+
+  // Send message
+  message.addEventListener('keypress', (evt) => {
+    if (evt.keyCode === 13) {
+      sendMsg();
+    }
+  });
+  send.addEventListener('click', sendMsg);
+
+  function sendMsg () {
+    fetch('/chat/message', {
+      method : 'POST',
+      headers: {
+        'Content-Type': 'text/plain'
+      },
+      body   : message.value
+    });
+    message.value = '';
+  }
+
+  // Show message
+  function addMsg(text) {
+    const p = document.createElement('p');
+    p.innerHTML = text;
+    content.appendChild(p);
+    content.scrollTop = content.scrollHeight;
+  }
+</script>
+</body>
+</html>
